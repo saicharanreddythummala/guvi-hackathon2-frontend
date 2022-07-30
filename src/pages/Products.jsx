@@ -4,17 +4,20 @@ import { useState, useEffect } from "react";
 import Card from "../components/Card";
 
 export default function Products({ onAdd, onRemove }) {
-  const URL = "http://localhost:4000/";
+  const URL = "https://guvi-hackathon2-rapp-backend.herokuapp.com/";
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [current, setCurrent] = useState("");
 
+  //function to fetch all products
   const fetchProducts = async () => {
     const res = await axios.get(`${URL}products`);
     const data = res.data;
     setProducts(data);
   };
+
+  //function to fetch products based on category
   const fetchCategories = async () => {
     const res = await axios.get(`${URL}categories`);
     const data = res.data;
@@ -26,23 +29,23 @@ export default function Products({ onAdd, onRemove }) {
     fetchCategories();
   }, []);
 
+  //function to fetch products based on category filter
   const onFilter = async (e) => {
     let res = [];
     if (e.target.textContent === "All Products") {
       res = await axios.get(`${URL}products`);
     } else {
       setCurrent(e.target.textContent);
-      res = await axios.get(
-        `${URL}products/?category=${e.target.textContent}`
-      );
+      res = await axios.get(`${URL}products/?category=${e.target.textContent}`);
     }
-   setProducts(res.data);
+    setProducts(res.data);
   };
 
-  const onSearch = async (e) =>{
-      const res = await axios.get(`${URL}products/?search=${e.target.value}`);
-      setProducts(res.data);
-  }
+  //function to fetch products based on search input
+  const onSearch = async (e) => {
+    const res = await axios.get(`${URL}products/?search=${e.target.value}`);
+    setProducts(res.data);
+  };
 
   return (
     <>
@@ -92,7 +95,7 @@ export default function Products({ onAdd, onRemove }) {
 
         <div className="row mt-5">
           {products.map((product) => (
-            <Card product={product} onAdd={onAdd} onRemove={onRemove} key={product._id} />
+            <Card product={product} key={product._id} />
           ))}
         </div>
       </div>

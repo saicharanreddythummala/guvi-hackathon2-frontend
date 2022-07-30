@@ -1,9 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import Context from "../context/Context";
 
-export default function Card({ product, onAdd, onRemove }) {
-  const [add, setAdd] = useState(true);
-
+export default function Card({ product }) {
   return (
     <>
       <div className="card col-2 me-4 mb-3">
@@ -16,14 +14,19 @@ export default function Card({ product, onAdd, onRemove }) {
         <div className="card-body">
           <p className="fs-3">{product.detail}</p>
           <p>₹{product.price}</p>
-            <button
-              className="btn btn-light border button-cart-design"
-              onClick={() => {
-                onAdd(product);
-              }}
-            >
-              Add to cart
-            </button>
+          {/* using context global function */}
+          <Context.Consumer>
+            {(consumer) => (
+              <button
+                className="btn btn-light border button-cart-design"
+                onClick={() => {
+                  consumer.onAdd(product);
+                }}
+              >
+                Add to cart
+              </button>
+            )}
+          </Context.Consumer>
         </div>
       </div>
     </>
