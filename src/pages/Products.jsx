@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Card from "../components/Card";
 
 export default function Products({ onAdd, onRemove }) {
-  const URL = "https://guvi-hackathon2-rapp-backend.herokuapp.com/";
+  const URL = "http://localhost:4000/";
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);

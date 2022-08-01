@@ -11,34 +11,6 @@ import { useEffect } from "react";
 import axios from "axios";
 
 function App() {
-  const [cart, setCart] = useState([]);
-
-  // const onAdd = (product) => {
-  //   console.log(product)
-  //   const exist = cart.find((x) => x._id === product._id);
-  //   if (exist) {
-  //     setCart(
-  //       cart.map((x) =>
-  //         x._id === product._id ? { ...exist, qty: exist.qty + 1 } : x
-  //       )
-  //     );
-  //   } else {
-  //     setCart([...cart, { ...product, qty: 1 }]);
-  //   }
-  // };
-
-  // const onRemove = (product) => {
-  //   const exist = cart.find((x) => x._id === product._id);
-  //   if (exist.qty === 1) {
-  //     setCart(cart.filter((x) => x._id !== product._id));
-  //   } else {
-  //     setCart(
-  //       cart.map((x) =>
-  //         x._id === product._id ? { ...exist, qty: exist.qty - 1 } : x
-  //       )
-  //     );
-  //   }
-  // };
 
   return (
     <>

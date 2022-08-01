@@ -6,16 +6,16 @@ import axios from "axios";
 export default function Categories() {
   const [categories, setCategories] = useState([]);
 
-  const URl = "https://guvi-hackathon2-rapp-backend.herokuapp.com/"
+  const URL = "http://localhost:4000/"
   //function to fetch categories
   const fetchProductData = async () => {
-    const res = await axios.get(`${URl}categories`);
+    const res = await axios.get(`${URL}categories`);
     setCategories(res.data);
   };
 
   useEffect(() => {
     fetchProductData();
-  }, {});
+  }, []);
 
   return (
     <>
@@ -23,10 +23,10 @@ export default function Categories() {
         <p className="fs-1 text-center">Categories</p>
         <div className="row">
           {categories.map((product) => (
-            <div className="col mb-5">
+            <div className="col mb-5"  key={product._id}>
               <div
                 className="card h-100 d-flex flex-column justify-content-center"
-                key={product._id}
+               
               >
                 <img
                   className="card-img-top"
